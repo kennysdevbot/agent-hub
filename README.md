@@ -13,9 +13,9 @@ A web-based observability dashboard for Kenny's AI agent team. Track projects, t
 
 - **Frontend:** React + TypeScript + Tailwind CSS
 - **State:** Zustand (local UI state) + RTK Query (server state / API cache)
-- **Backend:** Node.js + Express (lightweight API layer)
-- **Database:** SQLite (simple, file-based, good enough to start)
-- **Deployment:** Docker + GitHub Actions CI/CD
+- **Backend:** Supabase (hosted Postgres + auto-generated REST API — no custom server needed)
+- **Database:** Supabase (Postgres) — free tier, realtime subscriptions, Row Level Security
+- **Deployment:** Static site (Vercel/Netlify/GitHub Pages) + Supabase hosted DB
 
 ## Status
 
