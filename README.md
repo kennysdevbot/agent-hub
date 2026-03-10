@@ -1,33 +1,32 @@
 # Agent Hub
 
-A web-based observability dashboard for Kenny's AI agent team. Track projects, tasks, agent assignments, and activity logs in one place.
-
-## What It Does
-
-- **Project & Task Management:** Create projects, break them into tasks, assign to agents (Leon, Jill, Chris, Barry)
-- **Activity Logs:** Full audit trail — which agent, which model, timestamps, task description, outcome
-- **Observability Dashboard:** Real-time view of what's running, what's done, what's blocked
-- **Agent-Friendly API:** REST endpoints agents can call to update their own status, log activity, and pull assignments
+Internal dashboard for tracking Kenny's AI agent team. Projects, tasks, activity logs.
 
 ## Tech Stack
 
 - **Frontend:** React + TypeScript + Tailwind CSS
-- **State:** Zustand (local UI state) + RTK Query (server state / API cache)
-- **Backend:** Supabase (hosted Postgres + auto-generated REST API — no custom server needed)
-- **Database:** Supabase (Postgres) — free tier, realtime subscriptions, Row Level Security
-- **Deployment:** Static site (Vercel/Netlify/GitHub Pages) + Supabase hosted DB
+- **Data:** Supabase (Postgres + auto REST API) via `@supabase/supabase-js`
+- **State:** React built-in (useState/useEffect + custom hooks)
+- **Build:** Vite
+- **Deploy:** GitHub Pages
+
+## Views
+
+- **Project List** — name, status, dates
+- **Task List** — tasks per project, assigned agent, status
+- **Activity Log** — agent, model, action, timestamp (filterable)
 
 ## Status
 
-🟡 **Phase 1 — Planning & Architecture**
+🟡 **Phase 1 — Scaffold**
 
 See [docs/architecture.md](docs/architecture.md) and [docs/task-breakdown.md](docs/task-breakdown.md).
 
 ## Team
 
-| Agent | Role | Focus |
-|-------|------|-------|
-| Leon | Principal Architect | Architecture, complex systems, hard problems |
-| Jill | Senior Engineer | Core features, multi-file refactors |
-| Chris | Mid-Level Engineer | CI/CD, deployment, standard features |
-| Barry | Junior Engineer | Types, constants, boilerplate components |
+| Agent | Role |
+|-------|------|
+| Leon | Principal Architect |
+| Jill | Senior Engineer |
+| Chris | Mid-Level Engineer |
+| Barry | Junior Engineer |
