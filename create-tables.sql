@@ -1,45 +1,45 @@
 -- Projects table
-create table projects (
-  id uuid primary key default gen_random_uuid(),
-  name text not null,
-  status text not null default 'planning' check (status in ('planning', 'active', 'paused', 'done')),
-  created_at timestamptz not null default now(),
-  updated_at timestamptz not null default now()
+CREATE TABLE projects (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  name TEXT NOT NULL,
+  status TEXT NOT NULL DEFAULT 'planning',
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
 -- Tasks table
-create table tasks (
-  id uuid primary key default gen_random_uuid(),
-  project_id uuid not null references projects(id) on delete cascade,
-  title text not null,
-  assigned_to text not null check (assigned_to in ('leon', 'jill', 'chris', 'barry', 'albert')),
-  status text not null default 'todo' check (status in ('todo', 'in_progress', 'done')),
-  created_at timestamptz not null default now()
+CREATE TABLE tasks (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  project_id UUID NOT NULL REFERENCES projects(id) ON DELETE CASCADE,
+  title TEXT NOT NULL,
+  assigned_to TEXT NOT NULL,
+  status TEXT NOT NULL DEFAULT 'todo',
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
 -- Activity logs table
-create table activity_logs (
-  id uuid primary key default gen_random_uuid(),
-  agent text not null,
-  model text not null,
-  action text not null,
-  timestamp timestamptz not null default now()
+CREATE TABLE activity_logs (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  agent TEXT NOT NULL,
+  model TEXT NOT NULL,
+  action TEXT NOT NULL,
+  timestamp TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
 -- Enable Row Level Security
-alter table projects enable row level security;
-alter table tasks enable row level security;
-alter table activity_logs enable row level security;
+ALTER TABLE projects ENABLE ROW LEVEL SECURITY;
+ALTER TABLE tasks ENABLE ROW LEVEL SECURITY;
+ALTER TABLE activity_logs ENABLE ROW LEVEL SECURITY;
 
 -- Read-only policy for anon (dashboard)
-create policy "anon read projects" on projects for select using (true);
-create policy "anon read tasks" on tasks for select using (true);
-create policy "anon read activity_logs" on activity_logs for select using (true);
+CREATE POLICY "anon read projects" ON projects FOR SELECT USING (true);
+CREATE POLICY "anon read tasks" ON tasks FOR SELECT USING (true);
+CREATE POLICY "anon read activity_logs" ON activity_logs FOR SELECT USING (true);
 
 -- Full access for service role (agents)
-create policy "service all projects" on projects for all using (true);
-create policy "service all tasks" on tasks for all using (true);
-create policy "service all activity_logs" on activity_logs for all using (true);
+CREATE POLICY "service all projects" ON projects FOR ALL USING (true);
+CREATE POLICY "service all tasks" ON tasks FOR ALL USING (true);
+CREATE POLICY "service all activity_logs" ON activity_logs FOR ALL USING (true);
 
 -- Seed agent-hub as the first project
-insert into projects (name, status) values ('agent-hub', 'active');
+INSERT INTO projects (name, status) VALUES ('agent-hub', 'active');
