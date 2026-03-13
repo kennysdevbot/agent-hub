@@ -18,7 +18,7 @@ Internal dashboard for tracking Kenny's AI agent team. Projects, tasks, activity
 
 ## Status
 
-🟡 **Phase 1 — Scaffold**
+🟡 **Phase 1 — Foundation Build**
 
 See [docs/architecture.md](docs/architecture.md) and [docs/task-breakdown.md](docs/task-breakdown.md).
 
