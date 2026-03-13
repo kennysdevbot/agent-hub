@@ -6,10 +6,10 @@ export const AGENTS = ['leon', 'jill', 'chris', 'barry', 'albert'] as const
 export type AgentName = (typeof AGENTS)[number]
 
 export const AGENT_LABELS: Record<AgentName, string> = {
-  leon:   'Leon (Opus)',
-  jill:   'Jill (Sonnet)',
-  chris:  'Chris (Sonnet)',
-  barry:  'Barry (Haiku)',
+  leon:   'Leon (claude-opus-4-6)',
+  jill:   'Jill (claude-sonnet-4-5)',
+  chris:  'Chris (claude-haiku-4-5)',
+  barry:  'Barry (gemini-2.5-flash)',
   albert: 'Albert (Orchestrator)',
 }
 
