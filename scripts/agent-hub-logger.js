@@ -9,11 +9,12 @@
  *   node agent-hub-logger.js --agent chris --model haiku-4.5 --action "Completed feature X"
  * 
  * Usage as module:
- *   const { logWork } = require('./agent-hub-logger.js')
+ *   import { logWork } from './agent-hub-logger.js'
  *   await logWork('chris', 'haiku-4.5', 'Completed feature X')
  */
 
-const { createClient } = require('@supabase/supabase-js')
+import { createClient } from '@supabase/supabase-js'
+import { fileURLToPath } from 'url'
 
 const SUPABASE_URL = process.env.VITE_SUPABASE_URL
 const SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY
@@ -59,7 +60,8 @@ async function logWork(agent, model, action) {
 }
 
 // CLI mode: parse arguments and execute
-if (require.main === module) {
+const __filename = fileURLToPath(import.meta.url)
+if (process.argv[1] === __filename) {
   const args = process.argv.slice(2)
   
   // Simple argument parser
@@ -88,4 +90,4 @@ if (require.main === module) {
     })
 }
 
-module.exports = { logWork }
+export { logWork }
